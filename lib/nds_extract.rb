@@ -3,26 +3,34 @@ require 'directors_database'
 
 # Find a way to accumulate the :worldwide_grosses and return that Integer
 # using director_data as input
+
+#########################################################################
 def gross_for_director(director_data)
-  i=0
-  gross_total = 0
-  mov_length = director_data[:movies].length
-  #setting var's
-    while i < mov_length do
-    gross_total += director_data[:movies][i][:worldwide_gross]
-    i += 1
+
+  total = 0
+    index = 0
+
+    while index < director_data[:movies].length do
+      total += director_data[:movies][index][:worldwide_gross]
+      index += 1
     end
-return gross_total
+
+    total
 end
-############################
+###################################################################################
+
+
 def directors_totals(nds)
-
-  while name_i < nds.length do
-      insert_name = nds[name_i][:name]
-
-        result[insert_name] + gross_for_director(director_data)
-end
   result = {}
+    index = 0
+    while index < nds.size do
+      director = nds[index]
+      result[director[:name]] = gross_for_director(director)
+      index += 1
+    end
+    puts result
+    result
+
 return result
 end
 
